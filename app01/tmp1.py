@@ -1,25 +1,34 @@
+# Declare json library to parse json file
+# Declare difflib library to find closed word
 import json
 from difflib import get_close_matches
 
-
-file = open(r'G:\Workspaces\python-workspace\Python_Course\app01\data.json', 'r')
+# Loading json file to python data format
+file = open(r'G:/Workspaces/python-workspace/Python_Course/app01/data.json', 'r')
 data = json.load(file)
 
-a_String = input('Please insert a word: ').lower()
+# Request input
+a_String = input('Please insert a word: ')
 
-def checking(a_input):
-    c_word = get_close_matches(a_input, data.keys())
-    if (a_input.lower() or a_input.capitalize()) in data.keys():
-        print("{}: {}".format(a_input, data[a_input][0]))
+# Function result to return pair word and its meaning
+def result(a_input):
+    print(("{}: {}".format(a_input, data[a_input][0])))
+
+# Function checking_World to check the word is in dictionary or not?
+def checking_Word(a_input):
+    key = get_close_matches (a_input, data.keys())
+    print("Do you think the word is in: {0}".format(key))
+    s = input("If it is true, please type the correct word, if not please type No: ")
+    if s in key:
+        result(s)
     else:
-        yNq = input("Do you think the word is in: ", c_word, \
-            "Chose Yes or No")
-        if yNq in ["Yes", 'YES', 'yes']:
-            word = input("Please insert the word: ")
-            print("{}: {}".format(word, data[word][0]))
-        else:
-            print("Goodbye My Friend!")
+        print("Goodbye my friend!")
 
+def checking_first(a_input):
+    if a_input in data.keys():
+        result(a_input)
+    else:
+        checking_Word(a_input)
 
 if __name__ == '__main__':
-    checking(a_String)
+    checking_first(a_String)
