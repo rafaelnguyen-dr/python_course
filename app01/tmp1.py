@@ -18,7 +18,7 @@ def result(a_input):
 def checking_Word(a_input):
     key = get_close_matches (a_input.lower(), data.keys()) + \
         get_close_matches (a_input.capitalize(), data.keys()) + \
-            get_close_matches(a_input.upper(), data.keys())
+        get_close_matches(a_input.upper(), data.keys())
     print("Do you think the word is in: {0}".format(key))
     s = input("If it is true, please type the correct word, if not please type No: ")
     if s in key:
