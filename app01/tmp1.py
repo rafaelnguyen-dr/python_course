@@ -16,7 +16,8 @@ def result(a_input):
 
 # Function checking_World to check the word is in dictionary or not?
 def checking_Word(a_input):
-    key = get_close_matches (a_input, data.keys())
+    key = get_close_matches (a_input.lower(), data.keys()) + \
+        get_close_matches (a_input.capitalize(), data.keys())
     print("Do you think the word is in: {0}".format(key))
     s = input("If it is true, please type the correct word, if not please type No: ")
     if s in key:
